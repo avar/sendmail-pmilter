@@ -1,0 +1,21 @@
+Changes
+MANIFEST
+META.yml                                 Module meta-data (added by MakeMaker)
+Makefile.PL
+README
+doc/compiling-sendmail-811.txt
+doc/milter-protocol.txt
+examples/crm114-milter.pl
+examples/protocol-dump-compat.pl
+examples/protocol-dump.pl
+examples/symbol-dump.pl
+lib/Sendmail/Milter.pm
+lib/Sendmail/PMilter.pm
+lib/Sendmail/PMilter/Context.pm
+t/00_pmilter.t
+t/01_milter.t
+t/files/sendmail0.cf
+t/files/sendmail1.cf
+t/files/sendmail2.cf
+t/files/sendmail3.cf
+t/files/sendmail4.cf

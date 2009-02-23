@@ -1,0 +1,44 @@
+$Id: compiling-sendmail-811.txt,v 1.1 2003/09/29 18:27:58 tvierling Exp $
+_______________________________________________________________
+HOW TO COMPILE SENDMAIL 8.11 FOR MILTER SUPPORT WITHOUT THREADS
+
+Sendmail 8.12 comes with milter support out of the box.  Sendmail 8.11 isn't
+so fortunate, as milters were still in development in that version.
+
+Typically, compiling Sendmail 8.11 with milter support requires building
+libmilter (which requires pthreads).  However, libmilter is not required by
+PMilter, so it's useful to compile Sendmail 8.11 with milter support in the
+daemon, but without the libmilter add-on.
+
+To do this, add the following to devtools/Site/site.config.m4 (taken from
+libmilter/README).  Note that this does *not* include adding -D_FFR_MILTER
+to "conf_libmilter_ENVDEF":
+
+	dnl Milter
+	APPENDDEF(`conf_sendmail_ENVDEF', `-D_FFR_MILTER=1')
+
+This will allow compiling Sendmail with milter support.  However, if the OS
+does not have a working <pthread.h>, compilation may fail.  To fix this,
+apply the following diff, which will prevent inclusion of <pthread.h> during
+compilation.
+
+--- include/libmilter/milter.h	2001/08/01 03:27:34
++++ include/libmilter/milter.h	2002/12/11 02:53:34
+@@ -72,6 +72,7 @@
+ # define SMFI_V2_PROT	0x0000007FL	/* The protocol of V2 filter */
+ # define SMFI_CURR_PROT	SMFI_V2_PROT	/* The current version */
+ 
++#if 0
+ /* socket and thread portability */
+ # include <pthread.h>
+ typedef pthread_t	sthread_t;
+@@ -103,5 +104,6 @@
+ 	char		*ctx_reply;	/* reply code */
+ 	void		*ctx_privdata;	/* private data */
+ };
++#endif
+ 
+ #endif /* !_LIBMILTER_MILTER_H */
+***
+
+EOF

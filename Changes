@@ -1,0 +1,68 @@
+$Id: Changes,v 1.28 2004/08/10 21:10:36 tvierling Exp $
+
+Revision history for Perl extension Sendmail::PMilter.
+
+0.96  Sat Jul 07 18:27:25 2007 UTC
+    - Changed threads::shared::share(\$nchildren) to
+      threads::shared::share($nchildren), this should fix some failing smokes
+
+0.95  Tue Aug 10 21:10:35 2004 UTC
+	- fixed installation location of Sendmail::Milter; it was quite wrong
+		(reported by SL <milter@free.fr>)
+	- fixed manifest (0.94 was missing some metadata files)
+
+0.94  Wed Aug 04 17:10:00 2004 UTC
+	- [923158] made installation of Sendmail::Milter layer optional
+	- [925579] added support for experimental setsender() operation
+	- fixed usage of max_interpreters and max_requests values
+		(they were being ignored previously)
+	- allowed for named configuration variables to prefork_dispatcher()
+	- [1002122] fixed symbol table to return symbols from earlier
+		callbacks as appropriate (reported by <s.barnes@uni-koeln.de>)
+	- [1003308] changed "EOF in stream" handling to exit as if a normal
+		SMFIC_CLOSE had been received from the MTA
+	- fixed warning in Context.pm wrt <= on an undefined value
+	- [1003307] fixed ithread_dispatcher share() usage and warning
+		appearing when $@ was defined but empty
+	- [1003304] changed SIGINFO/SIGUSR1 handler to use warn() rather
+		than raw prints to STDERR (requested by <andrewr@iagu.net>)
+	- [925577, 1003351] added support for quarantine(), progress(),
+		and shutdown() (Sendmail 8.13 special case)
+	- moved SMFIF_* constants not in the standard Sendmail::Milter
+		into only Sendmail::PMilter
+
+----  Wed Jul 07 21:50:00 2004 EDT
+	- Marcia Lynell May, mother of Todd Vierling's partner Adam May,
+		passed away of complications related to spina bifida.
+
+0.93  Thu Mar 25 19:15:00 2004 UTC
+	- fixed call to threads::shared::share() to pass varglob, not
+		reference (reported by <schaefer@zanshin.com>)
+		(also fixed in 0.92_01)
+	- [910599] fixed SIGINFO handler to use only a valid signal; will use
+		SIGUSR1 if SIGINFO doesn't exist
+		(also fixed in 0.92_01)
+	- [910602] always send a response to the close packet if the socket
+		is still valid (was doing this for failures, but not for
+		successful closing of the session)
+	- [923156] moved constants from Sendmail::PMilter to Sendmail::Milter
+		to allow the libmilter implementation to coexist
+
+0.92  Fri Feb 27 15:15:00 2004 UTC
+	- added INET6 and UNIX socket support to sockaddr argument passed
+		to the "connect" callback
+	- fixed bug where a setreply() value was held beyond one callback
+		(also fixed in 0.91_02)
+	- implemented Sendmail::Milter::settimeout() and
+		Sendmail::Milter::setdbg() as no-ops; needed for completeness
+		(also fixed in 0.91_03)
+	- fixed signal handling in prefork dispatcher
+
+0.91  Sun Feb 22 15:20:00 2004 UTC
+	- added PMILTER_DISPATCHER env var
+	- added "ithread" and "prefork" dispatchers
+	- major doc overhaul
+	- moved sources to "lib"
+
+0.90  Thu Feb 19 16:20:00 2004 UTC
+	- first release of new architecture based on legacy codebase
