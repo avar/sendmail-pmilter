@@ -272,7 +272,7 @@ sub main ($) {
 				die "SMFIC_OPTNEG: packet has wrong size\n" unless (length($buf) == 12);
 
 				my ($ver, $actions, $protocol) = unpack('NNN', $buf);
-				die "SMFIC_OPTNEG: unknown milter protocol version $ver\n" unless ($ver == 2);
+				die "SMFIC_OPTNEG: unknown milter protocol version $ver\n" unless ($ver >= 2 && $ver <= 6);
 
 				$this->write_packet(SMFIC_OPTNEG, pack('NNN', 2,
 					$this->{callback_flags} & $actions,
