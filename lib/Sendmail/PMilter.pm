@@ -740,6 +740,16 @@ the dispatcher.  The available parameters that may be set are:
 
 =over 2
 
+=item child_init
+
+subroutine reference that will be called after each child process is forked.
+It will be passed the C<MILTER> object.
+
+=item child_exit
+
+subroutine reference that will be called just before each child process
+terminates.  It will be passed the C<MILTER> object.
+
 =item max_children
 
 Maximum number of child processes active at any time.  Equivalent to the
@@ -774,6 +784,12 @@ sub prefork_dispatcher (@) {
 			warn "$$: requests handled: $i\n";
 		};
 
+		# call child_init handler if present
+		if (defined $params{child_init}) {
+			my $method = $params{child_init};
+			$this->$method();
+		}
+
 		while ($i < $max_requests) {
 			my $socket = $lsocket->accept();
 			next if $!{EINTR};
@@ -783,6 +799,12 @@ sub prefork_dispatcher (@) {
 			$i++;
 			&$handler($socket);
 			$socket->close();
+		}
+
+		# call child_exit handler if present
+		if (defined $params{child_exit}) {
+			my $method = $params{child_exit};
+			$this->$method();
 		}
 	};
 
