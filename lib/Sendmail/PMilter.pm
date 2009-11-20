@@ -404,7 +404,7 @@ will be passed the arguments:
 MILTER is the milter object currently running.  LSOCKET is a listening
 socket (an instance of C<IO::Socket>), upon which C<accept()> should be
 called.  HANDLER is a subroutine reference which should be called, passing
-the socket object returned by C<LSOCKET->accept()>.
+the socket object returned by C<< LSOCKET->accept() >>.
 
 Note that the dispatcher may also be set from one of the off-the-shelf
 dispatchers noted in this document by setting the PMILTER_DISPATCHER

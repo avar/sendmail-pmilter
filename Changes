@@ -1,6 +1,7 @@
 Revision history for Perl extension Sendmail::PMilter.
 
 0.97  Mon Feb 23 23:39:15 2009 UTC
+    - RT#51713: fixed POD errors for embedded '>'
     - RT#43327: Changed protocol testing condition from ($ver == 2) to ($ver >= 2 && $ver <= 6)
       to make the milter work with Sendmail 8.14
     - Removed CVS Id from Changes file

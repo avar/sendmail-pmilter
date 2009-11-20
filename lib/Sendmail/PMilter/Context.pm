@@ -533,7 +533,7 @@ sub setreply ($$$$) {
 
 =item $ctx->shutdown()
 
-A special case of C<$ctx->setreply()> which sets the short numeric reply 
+A special case of C<< $ctx->setreply() >> which sets the short numeric reply 
 code to 421 and the ESMTP code to 4.7.0.  Under Sendmail 8.13 and higher, 
 this will close the MTA's communication channel quickly, which should 
 immediately result in a "close" callback and end of milter execution. 
