@@ -1073,15 +1073,37 @@ in detail here.
 
 Todd Vierling, E<lt>tv@duh.orgE<gt> E<lt>tv@pobox.comE<gt>
 
+=head1 Maintenance
+
+Since 0.96 Sendmail::Pmilter is no longer maintained on
+sourceforge.net, cpan:AVAR took it over in version 0.96 to fix a minor
+bug and currently owns the module in PAUSE.
+
+However this module is effectively orphaned and looking for a new
+maintainer. The current maintainer doesn't use Sendmail and probably
+never will again. If this code is important to you and you find a bug
+in it or want something new implemented please:
+
+=over
+
+=item *
+
+Fork it & fix it on GitHub at
+L<http://github.com/avar/sendmail-pmilter>
+
+=item *
+
+Send AVAR an E-Mail requesting upload permissions so you can upload
+the fixed version to the CPAN.
+
+=back
+
 =head1 SEE ALSO
 
 L<Sendmail::PMilter::Context> for a description of the arguments
 passed to each callback function
 
 The project homepage:  http://pmilter.sourceforge.net/
-
-http://sendmail-milter.sourceforge.net/ for a description of the
-current official release of the Sendmail::Milter interface.
 
 =head1 THANKS
 
