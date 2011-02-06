@@ -220,6 +220,7 @@ sub main ($) {
 				} elsif ($af eq SMFIA_INET6) {
 					$pack = eval {
 						require Socket6;
+						$addr =~ s/^IPv6://;
 						Socket6::pack_sockaddr_in6($port,
 							Socket6::inet_pton(&Socket6::AF_INET6, $addr));
 					};
