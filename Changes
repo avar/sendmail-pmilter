@@ -1,5 +1,9 @@
 Revision history for Perl extension Sendmail::PMilter.
 
+0.99  Sun Feb  6 21:32:30 UTC 2011
+    - RT#65499: Handle IPv6 addresses in SMFIC_CONNECT in
+      Sendmail::PMilter::Context
+
 0.98  Fri Mar 12 21:36:18 GMT 2010
     - RT#51759: added child_init and child_exit parameters to prefork
       dispatcher -Michael Schout
