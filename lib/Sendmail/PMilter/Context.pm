@@ -288,6 +288,10 @@ sub main ($) {
 			} elsif ($cmd eq SMFIC_QUIT) {
 				last;
 				# that's all, folks!
+			} elsif ($cmd eq SMFIC_UNKNOWN) {
+				# this is not an unknown packet, but a packet
+				# to tell the milter that an unknown smtp command
+				# has been received.
 			} else {
 				die "unknown milter packet type $cmd\n";
 			}
