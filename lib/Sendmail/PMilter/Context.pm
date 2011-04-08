@@ -285,6 +285,8 @@ sub main ($) {
 				$this->call_hooks('envrcpt', @$envrcpt);
 
 				delete $this->{symbols}{&SMFIC_RCPT};
+			} elsif ($cmd eq SMFIC_DATA) {
+				$this->call_hooks('data');
 			} elsif ($cmd eq SMFIC_QUIT) {
 				last;
 				# that's all, folks!
