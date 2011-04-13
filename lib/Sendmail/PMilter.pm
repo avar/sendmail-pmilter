@@ -895,7 +895,7 @@ sub postfork_dispatcher () {
 
 		while (1) {
 			my $socket = $lsocket->accept();
-			next if $!{EINTR};
+			next if !$socket;
 
 			warn "$$: incoming connection\n" if ($DEBUG > 0);
 
