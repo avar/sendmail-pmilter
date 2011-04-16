@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Sendmail-PMilter
-version:             0.99
+version:             1.00
 abstract:            Perl binding of Sendmail Milter protocol
 license:             ~
 generated_by:        ExtUtils::MakeMaker version 6.36

@@ -1,5 +1,9 @@
 Revision history for Perl extension Sendmail::PMilter.
 
+1.00  Sat Apr 16 13:10:16 UTC 2011
+    - Avoid infinite loop: signal handler modifies errno
+    - Added support for SMFIC_UNKNOWN
+
 0.99  Sun Feb  6 21:32:30 UTC 2011
     - RT#65499: Handle IPv6 addresses in SMFIC_CONNECT in
       Sendmail::PMilter::Context
