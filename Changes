@@ -1,5 +1,7 @@
 Revision history for Perl extension Sendmail::PMilter.
 
+{{$NEXT}}
+
 0.99  Sun Feb  6 21:32:30 UTC 2011
     - RT#65499: Handle IPv6 addresses in SMFIC_CONNECT in
       Sendmail::PMilter::Context
