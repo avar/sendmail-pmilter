@@ -80,8 +80,6 @@ to be called Mail::Milter.
 
 =head1 METHODS
 
-=over 4
-
 =cut
 
 ##### Symbols exported to the caller
@@ -123,6 +121,8 @@ sub new ($) {
 }
 
 =pod
+
+=over 4
 
 =item get_max_interpreters()
 
@@ -469,10 +469,6 @@ this milter.  Other MTAs likely don't use Sendmail's configuration file, so
 these methods would not be useful with them.
 
 =over 4
-
-=cut
-
-=pod
 
 =item auto_getconn(NAME[, CONFIG])
 
