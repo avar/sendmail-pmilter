@@ -976,6 +976,8 @@ __END__
 
 =pod
 
+=back
+
 =head1 EXPORTS
 
 Each of these symbols may be imported explicitly, imported with tag C<:all>,
@@ -1039,8 +1041,6 @@ statements in your milter program; otherwise, setsender() will always fail
 when called:
 
   local $Sendmail::PMilter::enable_setsender = 1;
-
-=back
 
 =back
 
