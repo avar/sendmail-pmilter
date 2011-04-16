@@ -60,8 +60,6 @@ This manual explains publicly accessible operations on $ctx.
 
 =head1 METHODS
 
-=over 4
-
 =cut
 
 ##### Symbols exported to the caller
@@ -387,6 +385,8 @@ sub call_hooks ($$;@) {
 ##### General methods
 
 =pod
+
+=over 4
 
 =item $ctx->getpriv
 
