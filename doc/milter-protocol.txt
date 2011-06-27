@@ -202,6 +202,13 @@ the connection open.)
 
 char	buf[]		Up to MILTER_CHUNK_SIZE (65535) bytes
 
+The buffer is not NUL-terminated.
+
+The body SHOULD be encoded with CRLF line endings, as if it was being
+transmitted over SMTP. In practice existing MTAs and milter clients
+will probably accept bare LFs, although at least some will convert CRLF
+sequences to LFs.
+
 (These body chunks can be buffered by the milter for later replacement
 via SMFIR_REPLBODY during the SMFIC_BODYEOB phase.)
 
@@ -262,7 +269,7 @@ appearing before its specified command, is currently undefined.
 
 **
 
-'E'	SMFIC_BODYEOB	Final body chunk
+'E'	SMFIC_BODYEOB	End of body marker
 			Expected response:  Zero or more modification
 			actions, then accept/reject action
 
@@ -354,7 +361,21 @@ at that point.)
 
 'b'	SMFIR_REPLBODY	Replace body (modification action)
 
-char	buf[]		Full body, as a single packet
+char	buf[]		A portion of the body to be replaced
+
+The buffer is not NUL-terminated.
+
+As with SMFIC_BODY, the body SHOULD be encoded with CRLF line endings.
+Sendmail will convert CRLFs to bare LFs as it receives SMFIR_REPLBODY
+responses (even if the CR and LF are split across two responses); the
+behavior of other MTAs has not been investigated.
+
+A milter that uses SMFIR_REPLBODY must replace the entire body, but
+it may split the new replacement body across multiple SMFIR_REPLBODY
+responses and it may make each response as small as it wants (and
+they do not need to correspond one to one with SMFIC_BODY messages).
+There is no explicit end of body marker; this role is filled by
+whatever accept/reject response the milter finishes with.
 
 **
 
